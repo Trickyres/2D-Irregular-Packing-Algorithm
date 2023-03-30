@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from shapely.geometry import Polygon,Point,mapping,LineString
 from shapely.ops import unary_union
 from shapely import affinity
@@ -220,7 +221,8 @@ class GeoFunc(object):
             else:
                 inter_coor=mapping_inter["coordinates"]
             return inter_coor
-
+        
+        # 如果不存在LineLine的相交
         # 对照所有顶点是否相同
         res=[]
         for pt1 in line1:
@@ -464,14 +466,14 @@ class GeoFunc(object):
         y1=edge1[1][1]-edge1[0][1]
         x2=edge2[1][0]-edge2[0][0]
         y2=edge2[1][1]-edge2[0][1]
-        res=x1*y2-x2*y1
+        res=x1*y2-x2*y1 # 向量的叉积 edge1*edge2向量的叉积
         right=False
         left=False
         parallel=False
         # print("res:",res)
         if res==0:
             parallel=True
-        elif res>0:
+        elif res>0: # 向量a*向量b的叉积大于0，说明向量a在向量b的顺时针方向，a在b的右侧。即edge2在左侧
             left=True
         else:
             right=True 
