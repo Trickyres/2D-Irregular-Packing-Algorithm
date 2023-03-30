@@ -34,7 +34,7 @@ zfill_num = 5
 
 class LPSearch(object):
     def __init__(self, **kw):
-        self.line_index = 0
+        self.line_index = 0 # TODO 这个是啥？
         self.max_time = 7200
         self.loadKey = False
 
